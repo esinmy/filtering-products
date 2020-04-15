@@ -47,8 +47,10 @@ class Owner(models.Model):
         return f"{self.owner} (тел. {self.owners_phonenumber})"
 
 class Complaint(models.Model):
-    author = models.ForeignKey(User, verbose_name="Кто жаловался", on_delete=models.CASCADE)
-    flat = models.ForeignKey(Flat, verbose_name="Квартира, на которую пожаловались", on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name="Кто жаловался", on_delete=models.CASCADE,
+                               related_name="complaints")
+    flat = models.ForeignKey(Flat, verbose_name="Квартира, на которую пожаловались", on_delete=models.CASCADE,
+                             related_name="complaints")
     text = models.TextField("Текст жалобы")
 
     class Meta:
